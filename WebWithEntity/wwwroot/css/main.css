@@ -1,0 +1,511 @@
+body {
+    margin: 0 auto;
+    /*background-color: black;*/
+    /*background: url(https://wallbox.ru/resize/1920x1080/wallpapers/main2/201726/149897246659588132962799.70636451.jpg) no-repeat no-repeat;*/
+    font-family: 'Russo One', sans-serif;
+    background-size: 100%;
+}
+.animation-area{
+    background: linear-gradient(to left, #8942a8, #ba382f);
+    width: 100%;
+    height: 1080px;
+}
+.box-area{
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;  
+}
+.box-area li{
+    position: absolute;
+    list-style: none;
+    display: block;
+    width: 25px; 
+    height: 25px;
+    background: rgba(255,255,255,0.2);
+    animation: animate 20s linear infinite;
+    bottom: -150px;
+}
+.box-area li:nth-child(1){
+    left:86%;
+    width: 80px;
+    height: 80px;
+    animation-delay: 0s;
+}
+.box-area li:nth-child(2){
+    left:12%;
+    width: 30px;
+    height: 30px;
+    animation-delay: 1.5s;
+    animation-duration: 10s;
+}
+.box-area li:nth-child(3){
+    left:70%;
+    width: 100px;
+    height: 100px;
+    animation-delay: 5.5s;
+}
+.box-area li:nth-child(4){
+    left:42%;
+    width: 150px;
+    height: 150px;
+    animation-delay: 0s;
+    animation-duration: 15s;
+}
+.box-area li:nth-child(5){
+    left:65%;
+    width: 40px;
+    height: 40px;
+    animation-delay: 0s;
+}
+.box-area li:nth-child(6){
+    left:15%;
+    width: 110px;
+    height: 110px;
+    animation-delay: 3.5s;
+}
+@keyframes animate{
+    0%{
+        transform: translateY(0) rotate(0deg);
+        opacity: 1;
+    }
+    100%{
+        transform: translateY(-880px) rotate(360deg);
+        opacity: 0;
+    }
+}
+.account{
+    z-index:2;
+    color:black;
+}
+
+.backimage {
+    position: fixed;
+    z-index: 1;
+}
+
+.allcontent {
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    font-family: 'Russo One', sans-serif;
+    position: fixed;
+    z-index: 4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100px;
+    transition: 0.7s;
+    background: rgb(0, 0, 0);
+}
+
+.logo {
+    width: 5%;
+    height: 5%;
+}
+
+.headercontent {
+    width: 30%;
+    height: 10%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.searches {
+    height: 30px;
+    border: 2px solid black;
+    width: 90%;
+}
+
+.forprice {
+    height: 25px;
+    border: 2px solid black;
+    width: 40%;
+}
+
+.selectlist {
+    font-family: 'Russo One', sans-serif;
+    height: 30px;
+    outline: black;
+    border: 2px solid black;
+    padding: 0 10px;
+    width: 100%;
+}
+
+.selectlist option:hover {
+    color: black;
+}
+
+.headercontentelem {
+    height: 60%;
+    color: white;
+   /* font-size:18px;*/
+}
+
+.headercontentelem a {
+    text-decoration: none;
+    color: white;
+    position: relative;
+}
+
+.headercontentelem a:hover {
+    transition: .4s linear;
+    color: goldenrod;
+}
+
+.headercontentelem a::after {
+    content: "";
+    width: 100%;
+    display: block;
+    position: absolute;
+    height: 20%;
+    border-bottom: 2px solid;
+    top: 100%;
+    left: 0;
+    opacity: 0;
+    transition: .4s linear;
+}
+
+.headercontentelem a:hover::after {
+    opacity: 1;
+    color: goldenrod;
+}
+
+.headerwrap {
+    width: 100%;
+    height: 90%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter {
+    height:100%;
+    letter-spacing: 1px;
+    width: 20%;
+    background-color: rgba(0,0,0,0.9);
+   /* box-shadow: 6px 0px 5px 0px rgba(255,255,255,1);*/
+    height: 100%;
+    z-index:2;
+}
+
+.filterwrap {
+    display: flex;
+    flex-direction: column;
+
+}
+.filterwrap label{
+    color:white;
+}
+
+.filterelem {
+    height: 25%;
+    margin-left: 20px;
+    margin-right: 20px;
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.filterelem i{
+    color:white;
+}
+
+.prices {
+    height: 100%;
+    display: flex;
+    flex-direction:column;
+    justify-content: space-between;
+}
+.pricesinputs {
+    height: 100%;
+    width:100%;
+    display: flex;
+    align-items: center;
+}
+.pricesinputs input{
+    width:50%;
+}
+
+.caption {
+    margin-top: 100px;
+    color:black;
+    z-index:2;
+}
+.caption a {
+    color: black;
+    z-index:2;
+}
+
+.choice {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 21%;
+    z-index: 2;
+}
+.choice a{
+    color:white;
+}
+
+.section1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+.container {
+    width: 90%;
+}
+
+.section1wrap {
+    width: 100%;
+    height: 1080px;
+    display: flex;
+    margin-top: 100px;
+    /*background-color: rgba(0,0,0,0.9);*/
+}
+.logreg {
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+}
+
+/*.productswrap {
+    padding-top: 20px;
+    width: 100%;
+    height:92%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}*/
+.star{
+    font-size:25px;
+}
+.star:hover{
+    color:goldenrod;
+}
+
+.pagination {
+    height: 8%;
+    align-items: center;
+    margin: 0 auto;
+    margin-top:20px;
+    color:black;
+    z-index:2;
+}
+.pagination a{
+    color:white;
+}
+.withpagination{
+    width:80%;
+    height:100%;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.inputwrap {
+    border-bottom: 3px solid black;
+    width: 100%;
+    color:black;
+}
+
+.logindata {
+    width: 21%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.data {
+    font-family: 'Russo One', sans-serif;
+    font-size: 28px;
+    color: #000;
+    line-height: 1.2;
+    outline: none;
+    border: none;
+    background: transparent;
+}
+
+.subm {
+    margin-top: 10px;
+    text-decoration: none;
+    outline: none;
+    border: 2px solid;
+    font-family: 'Russo One', sans-serif;
+}
+
+.subm:hover {
+    background: rgba(59, 59, 59, 0.2);
+}
+
+.subm:active {
+    background: goldenrod;
+}
+
+.filtbut {
+    font-family: 'Russo One', sans-serif;
+    display: inline-block;
+    color: black;
+    font-weight: 700;
+    text-decoration: none;
+    user-select: none;
+    padding: .25em 2em;
+    outline: none;
+    border: 2px solid;
+    border-radius: 1px;
+    transition: .2s;
+}
+
+.filtbut:hover {
+    background: rgba(59, 59, 59, 0.2);
+}
+
+.filtbut:active {
+    background: goldenrod;
+}
+
+.productswrap {
+    display: grid;
+    max-width: 80vw;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    grid-auto-rows: 1fr;
+    grid-gap: 3em;
+    grid-auto-flow: dense;
+}
+
+.productswrap .product {
+    grid-row: span 2;
+    grid-column: span 2;
+}
+p{
+    margin: 0;
+}
+.product {
+    height: 500px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    margin-right: 20px;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    background-color: rgba(0,0,0,0.5);
+    
+}
+
+.product:hover > .productimage > div {
+    opacity: 0.7;
+    transition: .3s;
+}
+
+.product:hover > .productimage > a {
+    opacity: 1;
+    transition: .3s;
+}
+
+.productimage {
+    position: relative;
+    height: 240px;
+    width: 300px;
+}
+
+.productimage > div {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgb(0,0, 0);
+    transition: .2s;
+    opacity: 0;
+    z-index: 2;
+}
+
+.productimage > a {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    z-index: 3;
+    font-family: 'Russo One', sans-serif;
+    display: inline-block;
+    color: white;
+    font-weight: 700;
+    text-decoration: none;
+    user-select: none;
+    padding: .25em 2em;
+    outline: none;
+    border: 2px solid;
+    border-radius: 1px;
+    transition: .2s;
+}
+.productimage > a:hover {
+    background: goldenrod;
+    color: black;
+}
+
+.productimage > a:active {
+    color: white;
+    border-color: white;
+}
+
+.productimage > img {
+    height: 100%;
+    width: 100%;
+}
+
+.productcontent {
+    height: 40%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.pclass {
+    font-family: 'Russo One', sans-serif;
+    color: white;
+    width: 300px;
+    text-align: center;
+    font-size: 25px;
+}
+.productconfigs{
+    height:300px;
+    display:flex;
+    justify-content:space-between;
+    flex-direction:column
+}
+.productconfigs p{
+    color:white;
+    font-size:18px;
+    text-align:center;
+}
+.favoritebut {
+    /*position:relative;*/
+    margin-top:30px;
+    text-align: center;
+    height: 50px;
+}
+/*.favoritebut > a{
+    position: absolute;
+    top:100%;
+    left:25;
+}*/
+
+/*.productcontent span p {
+    font-family: 'Russo One', sans-serif;
+    color: white;
+    padding-bottom: 10px;
+    font-size: 25px;
+    margin: 0;
+}*/

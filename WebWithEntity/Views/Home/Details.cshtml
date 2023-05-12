@@ -1,0 +1,74 @@
+﻿
+@model IEnumerable<WebWithEntity.Examples>
+@{
+    ViewData["Tittle"] = "Product" ;
+    // Layout = null;
+    int i = 0;
+}
+<!DOCTYPE html>
+<head>
+    <title>Магазин маек</title>
+</head>
+<body>
+    <div class="detailssection1">
+        <div class="detailscontainer">
+            <div class="detailssection1wrap">
+                <div class="productdetails">
+                    @{
+                        var example = Model.FirstOrDefault();
+                    }
+                    <img src="@example.IdProductNavigation.Photo" class="productphoto" />
+                    <form asp-controller="Home" asp-action="AddInBasket" method="post" class="productdescription">
+                        <div class="productname">
+                            <div>@example.IdProductNavigation.ProductNname</div>
+                        </div>
+                        <div class="productgender">
+                            <div style="font-size:27px; padding-right:5px">Пол: </div>
+                            <div>@example.IdProductNavigation.Gender</div>
+                        </div>
+                        <div class="producttitles"><p style="padding-right:5px">Стоимость:  </p><p> @example.IdProductNavigation.Price  BYN</p> </div>
+                        <div class="producttitles"><p style="padding-right:5px">Тип:  </p><p> @example.IdProductNavigation.IdCategoryNavigation.CategoryName</p> </div>
+
+                        <div>Размеры: </div>
+                        <ul class="details_inputs">
+                            @foreach (var item in Model)
+                            {
+                                i++;
+                                if (i == 1)
+                                {
+                                    <li><input type="radio" class="details_id_input" name="id" id="@item.Id" value="@item.Id" checked><label class="details_id_label" for="@item.Id" id="itemlabel">@item.Size</label></li>
+
+                                }
+                                else
+                                {
+                                    <li><input type="radio" class="details_id_input" name="id" id="@item.Id" value="@item.Id"><label class="details_id_label" for="@item.Id" id="itemlabel">@item.Size</label></li>
+                                }
+                                //size = null
+                            }
+                        </ul>
+                        <div><input type="number" style="width:120px" class="searches" min="1" value="1" name="count"><label>Количество</label></div>
+                        <div>
+                            <input type="submit" value="В корзину" class="subm" />
+                        </div>
+                    </form>
+                   
+                </div>
+                    
+                        
+
+                    
+
+                </div>
+        </div>
+    </div>
+    @*<tr>
+            <td>Id</td>
+            <td>ProductName</td>
+            <td>Size</td>
+            <td>Price</td>
+            <td>CountAtStorage</td>
+            <td>CategoryName</td>
+        </tr>*@
+
+
+</body>

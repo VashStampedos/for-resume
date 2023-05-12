@@ -1,0 +1,36 @@
+﻿@model IQueryable<Favorites>
+<div class="basketsection1">
+    <div class="basketcontainer">
+        <div class="basketsection1wrap">
+            <div class="basketproductswrap">
+
+                <h1 style="color:black">Избранное</h1>
+                @foreach (var item in Model)
+                {
+                    <form method="post" asp-controller="Home" asp-action="AddInBasket" class="basketproduct">
+                        <div>
+                            <img src="@item.IdProductNavigation.Photo" class="basketproductphoto" />
+
+                            <div class="basketproductdescription">
+                                <input type="hidden" name="idprod" value="@item.IdProductNavigation.Id" />
+                                <div class="basketproductinfos">Название: @item.IdProductNavigation.ProductNname</div>
+                                <div class="basketproductinfos">Категория: @item.IdProductNavigation.IdCategoryNavigation.CategoryName</div>
+                                <div class="basketproductinfos">Пол: @item.IdProductNavigation.Gender</div>
+                                <select name="size" asp-items="Html.GetEnumSelectList<Sizes>()" style="width:120px" class="selectlist"></select>
+                                @*<div class="basketproductinfos">Price:@item.IdExampleNavigation.Size</div>*@
+                                <div class="basketproductinfos">Цена: @item.IdProductNavigation.Price BYN</div>
+                                <div class="basketproductinfos"><input type="submit" value="В корзину" class="subm" /></div>
+
+                                @*<div class="basketproductinfos"><a asp-controller="Home" asp-action="AddInBasket" asp-route-id="@item.Id" class="subm">В корзину!</a></div>*@
+                            </div>
+
+                        </div>
+                        @*<h1>@item.IdUserNavigation.Login</h1>
+                        <h1>@item.IdUserNavigation.Id</h1>*@
+                            <a asp-controller="Home" asp-action="RemoveFromFavorites" asp-route-id="@item.Id" style="color:goldenrod;"><i class="fas fa-times"></i></a>
+                    </form>
+                }
+            </div>
+        </div>
+    </div>
+</div>

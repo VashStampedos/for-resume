@@ -1,0 +1,100 @@
+body {
+    font-family: 'Russo One', sans-serif;
+}
+
+.basketsection1 {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+.basketcontainer {
+    width: 90%;
+}
+
+.orderformwrap {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+.orderformwrap>div{
+    height:150px;
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.basketsection1wrap {
+    margin-top: 10%;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content:center;
+}
+
+.basketorderwrap {
+    width: 20%;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    z-index:2;
+    color:white;
+}
+
+.basketproductswrap {
+    width: 80%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    z-index:2;
+}
+
+.basketproduct {
+    width: 70%;
+    height: 250px;
+    display: flex;
+    margin-bottom: 20px;
+    background-color:rgba(0,0,0,0.6);
+    color:white;
+    z-index:2;
+}
+.basketproduct > div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+.basketproduct:hover{
+     background-color:rgba(0,0,0,0.9);
+}
+
+.basketproductname {
+    font-size: 30px;
+}
+
+.basketproductgender {
+    font-size: 25px;
+}
+
+.basketproductphoto {
+    width: 40%;
+    height: 100%;
+}
+
+.basketproductdescription {
+    margin-left: 20px;
+    display: flex;
+    font-size: 20px;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 40%;
+    height: 50%;
+}
+
+.basketproductsizes {
+    width: 90%;
+    display: flex;
+    justify-content: left;
+}

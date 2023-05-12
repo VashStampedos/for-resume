@@ -1,0 +1,27 @@
+﻿@model IEnumerable<Orderexample>
+@{
+    
+}
+
+<div class="basketproductswrap">
+    <h1 style="z-index:2">Мои заказы</h1>
+    @foreach (var item in Model)
+    {
+        <div class="basketproduct">
+            @*<h1>@item.IdOrderNavigation.IdUser</h1>
+                <h1>@item.IdOrderNavigation.Id</h1>*@
+            <img src="@item.IdExampleNavigation.IdProductNavigation.Photo" class="basketproductphoto" />
+            @*<h1>@item.IdOrderNavigation.Status</h1>*@
+            <div class="basketproductdescription">
+                <div class="basketproductinfos">Заказ №: @item.IdOrderNavigation.Id</div>
+                <div class="basketproductinfos">Статус: @item.IdOrderNavigation.Status</div>
+                <div class="basketproductinfos">Название: @item.IdExampleNavigation.IdProductNavigation.ProductNname</div>
+                <div class="basketproductinfos">Категория: @item.IdExampleNavigation.IdProductNavigation.IdCategoryNavigation.CategoryName</div>
+                <div class="basketproductinfos">Пол: @item.IdExampleNavigation.IdProductNavigation.Gender</div>
+                <div class="basketproductinfos">Размер: @item.IdExampleNavigation.Size</div>
+                <div class="basketproductinfos">Кол-во: @item.Count</div>
+                <div class="basketproductinfos">Цена: @item.IdExampleNavigation.IdProductNavigation.Price BYN</div>
+            </div>
+        </div>
+    }
+</div>

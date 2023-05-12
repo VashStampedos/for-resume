@@ -1,0 +1,33 @@
+﻿@model IEnumerable<WebWithEntity.Examples>
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Оформление заказа</title>
+</head>
+<body>
+    <div>
+        <h3>Форма оформления покупки</h3>
+        <p>Для оформления покупки заполните следующие поля:</p>
+        <form method="post" class="form-horizontal" role="form">
+            <input type="hidden" value="@ViewBag.ExampleId" name="ExampleId" />
+
+            <div class="form-group">
+                <label for="Address" class="col-md-2 control-label">Адресс:</label>
+                <div class="col-md-4">
+                    <input type="text" name="Adress" class="form-control" />
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" class="btn btn-default" value="Отправить" />
+                </div>
+            </div>
+            
+        </form>
+    </div>
+</body>
+</html>

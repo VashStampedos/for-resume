@@ -1,0 +1,80 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - WebWithEntity</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" rel="stylesheet" />
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Russo+One&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css/main.css">
+    <link asp-href-include="~/css/*.css" rel="stylesheet" />
+    @*<link rel="stylesheet" href="~/css/main.css" />
+        <link rel="stylesheet" href="~/css/master.css" />
+        <link rel="stylesheet" href="~/css/master.css" />*@
+</head>
+<body>
+    <!--меню-->
+    @*https://www.zastavki.com/pictures/1920x1080/2015/Backgrounds_Ebony__white_background_105180_23.png*@
+    @*<img class="backimage" src="https://img1.goodfon.ru/original/1920x1080/d/53/art-qsixtynine-devushka.jpg" />*@
+    <div class="animation-area backimage">
+        <ul class="box-area">
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+            <li></li>
+        </ul>
+    </div>
+    @*<img class="backimage" src="https://wallbox.ru/resize/1920x1080/wallpapers/main2/201726/149897246659588132962799.70636451.jpg" />*@
+    <nav class="header">
+        <div class="container">
+            <div class="headerwrap">
+                <img src="~/Photos/Logo.png" class="logo">
+                <div class="headercontent">
+                    <div class="headercontentelem">
+                        <a asp-controller="Home" asp-action="Index" style="font-size:20px" class="navbar-brand">Главная</a>
+                    </div>
+                    <div class="headercontentelem">
+                        <a asp-controller="Home" asp-action="Basket" class="navbar-brand"> <i class="fas fa-shopping-cart my-icon"></i></a>
+                    </div>
+                    <div class="headercontentelem">
+                        <a asp-controller="Home" asp-action="GetFavorites" class="navbar-brand"> <i class="fas fa-star"></i></a>
+                    </div>
+                    <div class="headercontentelem">
+                        @{
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-controller="Home" asp-action="Office" class="navbar-brand">Мои заказы</a>
+                            }
+                        }
+                    </div>
+                    <div class="headercontentelem">
+                        @{
+                            if (User.Identity.IsAuthenticated)
+                            {
+                                <a asp-controller="Account" asp-action="Logout" class="navbar-brand">Выйти</a>
+
+                            }
+                            else if (!User.Identity.IsAuthenticated)
+                            {
+                                <a asp-controller="Account" asp-action="Login" class="navbar-brand">Войти/Зарегистрироваться</a>
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </nav>
+    <!--основной контент-->
+    <div>
+        @RenderBody()
+        @*<hr />
+            <footer>
+                <p>© 2020 - T-shop</p>
+            </footer>*@
+    </div>
+    <script src="~/js/main.js"></script>
+</body>
+</html>

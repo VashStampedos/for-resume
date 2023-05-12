@@ -1,0 +1,52 @@
+﻿@model LoginViewModel;
+
+<div class="section1">
+    <div class="container">
+        <div class="section1wrap logreg">
+            <div class="caption">
+                <h1 style="color:black">LogIn</h1>
+            </div>
+            <div class="choice">
+                <a asp-controller="Home" asp-action="Index" style="color:black; text-align: center; margin-top: 10px;" class="filtbut">Отмена</a>
+                <a  asp-controller="Account" asp-action="Register" style="color: black; text-align: center; margin-top: 10px;" class="filtbut">Регистрация</a>
+               
+            </div>
+            <form asp-controller="Account" asp-action="Login" asp-antiforgery="true" method="post" class="account">
+                <div class="validation" asp-validation-summary="ModelOnly"></div>
+                <div class="inputwrap">
+                    <i class="fas fa-envelope"></i>
+                    <input asp-for="Email"  placeholder="email" class="data" />
+                    <span asp-validation-for="Email"></span>
+                </div>
+                <div class="inputwrap">
+                    <i class="fas fa-lock"></i>
+                    <input type="password" asp-for="Password" placeholder="password" class="data"/>
+                    <span asp-validation-for="Password"></span>
+                </div>
+                <input type="submit" class="subm" value="Войти">
+            </form>
+
+        </div>
+    </div>
+</div>
+
+@*<a asp-controller="Home" asp-action="Index">Отмена</a>
+<a asp-action="Register" asp-controller="Account">Регистрация</a>
+
+<form asp-controller="Account" asp-action="Login" asp-antiforgery="true" method="post">
+    <div class="validation" asp-validation-summary="ModelOnly"></div>
+    <div>
+        <label asp-for="Email">Email</label>
+        <input asp-for="Email" />
+        <span asp-validation-for="Email"></span>
+    </div>
+    <div>
+        <label asp-for="Password">Password</label>
+        <input asp-for="Password" />
+        <span asp-validation-for="Password"></span>
+    </div>
+    <div>
+        <button type="submit">Войти</button>
+    </div>
+
+</form>*@

@@ -1,0 +1,281 @@
+﻿
+@model WebWithEntity.Models.ProductsViewModel
+@{
+    ViewData["Tittle"] = "Список товаров";
+    
+   // Layout = null;
+}
+<!DOCTYPE html>
+<head>
+    <title>Магазин маек</title>
+    <link rel="stylesheet" href="~/css/main.css" />
+</head>
+<body>
+   
+    <div class="section1">
+        <div class="container">
+            <div class="section1wrap">
+                <form method="get" asp-controller="Home" asp-action="Index" class="filter">
+                    <div class="filterwrap">
+                        @*<div>
+            @{ var s = Model.PageModel.Count;}
+            Кол-во удавлетворяющих предметов: @s
+        </div>*@
+                        <div class="filterelem">
+                            <i class="fas fa-search"></i>
+                            <input placeholder="название" name="name" asp-for="@Model.FilterModel.Name" class="searches" />
+                        </div>
+                       
+                        <div class="filterelem prices">
+                            <label class="control-label">Цена: </label>
+                            <div class="pricesinputs">
+                                <input placeholder="от" type="number" asp-for="@Model.FilterModel.MinPriceValue" name="minPrice" class="forprice" />
+                                <input placeholder="до" type="number" asp-for="@Model.FilterModel.MaxPriceValue" name="maxPrice" class="forprice" />
+
+                            </div>
+                        </div>
+                        <div class="filterelem">
+                            <label class="control-label">Категории: </label>
+                            <select name="category" asp-items="@Model.FilterModel.Categories" class="selectlist"></select>
+                        </div>
+                        <div class="filterelem">
+                            <label class="control-label">Пол: </label>
+                            <select name="gender" asp-for="@Model.FilterModel.Gender" asp-items="Html.GetEnumSelectList<Genders>()" class="selectlist"></select>
+                        </div>
+                        <div class="filterelem">
+                            <label class="control-label">Сортировка: </label>
+                            <select name="sortmodel" asp-for="@Model.SortModel.Current" asp-items="Html.GetEnumSelectList<SortState>()" class="selectlist"></select>
+                        </div>
+                        <div class="filterelem">
+                            <input type="submit" value="Фильтр" class="filtbut" />
+                        </div>
+                    </div>
+                </form>
+                <div class="withpagination">
+                    <div class="productswrap">
+                        @foreach (var item in Model.Products)
+                        {
+                            <div class="product">
+                                <div class="productimage">
+                                    <img src="@item.Photo">
+                                    <div></div>
+                                    <a asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
+                                </div>
+                                <div class="productcontent">
+                                    <span><p class="pclass" style="width:300px; margin-top:1em; text-align:center;">@item.ProductNname</p></span>
+                                    <div class="productconfigs">
+                                        <span><p >@item.IdCategoryNavigation.CategoryName</p></span>
+                                        <span><p >@item.Gender</p></span>
+                                        <span><p >@item.Price BYN</p></span>
+                                    </div>
+                                    <div class="favoritebut">
+                                        <a asp-controller="Home" asp-action="AddInFavorites" asp-route-id="@item.Id"
+                                           asp-route-page="@(Model.PageModel.PageNumber)"
+                                           asp-route-name="@(Model.FilterModel.Name)"
+                                           asp-route-gender="@(Model.FilterModel.Gender)"
+                                           asp-route-maxPrice="@(Model.FilterModel.MaxPriceValue)"
+                                           asp-route-minPrice="@(Model.FilterModel.MinPriceValue)"
+                                           asp-route-category="@(Model.FilterModel.SelectedCategory)"
+                                           asp-route-sortmodel="@(Model.SortModel.Current)"
+                                           style="color:white; max-width:30%; text-align:center;"><i class="fas fa-star star"></i></a>
+                                       
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        }
+                    </div>
+                        <div class="pagination">
+                            @if (Model.PageModel.HasPreviousPage)
+                            {
+                                <a asp-action="Index"
+                                   asp-route-page="@(Model.PageModel.PageNumber - 1)"
+                                   asp-route-name="@(Model.FilterModel.Name)"
+                                   asp-route-gender="@(Model.FilterModel.Gender)"
+                                   asp-route-maxPrice="@(Model.FilterModel.MaxPriceValue)"
+                                   asp-route-minPrice="@(Model.FilterModel.MinPriceValue)"
+                                   asp-route-category="@(Model.FilterModel.SelectedCategory)"
+                                   asp-route-sortmodel="@(Model.SortModel.Current)"
+                                   class="filtbut" style="color:black;">
+                                    <i class="fas fa-angle-left"></i>
+
+
+                                </a>
+                                <a asp-action="Index"
+                                   asp-route-page="@(Model.PageModel.PageNumber - 1)"
+                                   asp-route-name="@(Model.FilterModel.Name)"
+                                   asp-route-gender="@(Model.FilterModel.Gender)"
+                                   asp-route-maxPrice="@(Model.FilterModel.MaxPriceValue)"
+                                   asp-route-minPrice="@(Model.FilterModel.MinPriceValue)"
+                                   asp-route-category="@(Model.FilterModel.SelectedCategory)"
+                                   asp-route-sortmodel="@(Model.SortModel.Current)"
+                                   class="filtbut" style="color:black;">
+
+                                    @{var previousPage = Model.PageModel.PageNumber;
+                                        var previous = previousPage - 1;
+                                    }
+                                    @previous
+
+                                </a>
+
+
+                            }
+                            <a asp-action="Index"
+                               asp-route-page="@(Model.PageModel.PageNumber)"
+                               asp-route-name="@(Model.FilterModel.Name)"
+                               asp-route-gender="@(Model.FilterModel.Gender)"
+                               asp-route-maxPrice="@(Model.FilterModel.MaxPriceValue)"
+                               asp-route-minPrice="@(Model.FilterModel.MinPriceValue)"
+                               asp-route-category="@(Model.FilterModel.SelectedCategory)"
+                               asp-route-sortmodel="@(Model.SortModel.Current)"
+                               class="filtbut" style="color:black;">
+
+                                @Model.PageModel.PageNumber
+
+
+                            </a>
+
+                            @if (Model.PageModel.HasNextPage)
+                            {
+
+                                <a asp-action="Index"
+                                   asp-route-page="@(Model.PageModel.PageNumber + 1)"
+                                   asp-route-name="@(Model.FilterModel.Name)"
+                                   asp-route-gender="@(Model.FilterModel.Gender)"
+                                   asp-route-maxPrice="@(Model.FilterModel.MaxPriceValue)"
+                                   asp-route-minPrice="@(Model.FilterModel.MinPriceValue)"
+                                   asp-route-category="@(Model.FilterModel.SelectedCategory)"
+                                   asp-route-sortmodel="@(Model.SortModel.Current)"
+                                   class="filtbut" style="color:black;">
+
+                                    @{var nextPage = Model.PageModel.PageNumber;
+                                        var next = nextPage + 1;
+                                    }
+                                    @next
+
+
+                                </a>
+                                <a asp-action="Index"
+                                   asp-route-page="@(Model.PageModel.PageNumber + 1)"
+                                   asp-route-name="@(Model.FilterModel.Name)"
+                                   asp-route-gender="@(Model.FilterModel.Gender)"
+                                   asp-route-maxPrice="@(Model.FilterModel.MaxPriceValue)"
+                                   asp-route-minPrice="@(Model.FilterModel.MinPriceValue)"
+                                   asp-route-category="@(Model.FilterModel.SelectedCategory)"
+                                   asp-route-sortmodel="@(Model.SortModel.Current)"
+                                   class="filtbut" style="color:black;">
+                                    <i class="fas fa-angle-right"></i>
+
+                                </a>
+
+
+                            }
+                        </div>
+
+                </div>
+            </div>
+            
+
+        </div>
+    </div>
+    <!--<form method="get" asp-controller="Home" asp-action="Index">
+        <div class="form-inline form-group">
+            <label class="control-label">Название: </label>
+            <input name="name" value="@Model.FilterModel.Name" class="form-control" />
+
+            <label class="control-label">Категории: </label>
+            <select name="category" asp-items="@Model.FilterModel.Categories" class="form-control"></select>
+
+            <label class="control-label">Пол: </label>
+            <select name="gender" asp-for="@Model.FilterModel.Gender" asp-items="Html.GetEnumSelectList<Genders>()" class="form-control"></select>-->
+
+            @*<label class="control-label">Сортировка: </label>
+            <select name="sortmodel" asp-for="@Model.SortModel.Current" asp-items="Html.GetEnumSelectList<SortState>()" class="form-control"></select>*@
+
+            <!--<label class="control-label">Цена: </label>
+            <input type="number" value="" name="price" class="form-control" />
+
+            <input type="submit" value="Фильтр" class="filtbut" />
+        </div>
+    </form>-->
+    @*<div>
+        <a asp-action="Index"
+           asp-route-sortmodel="@(Model.SortModel.NewnessSort)"
+           asp-route-name="@(Model.FilterModel.Name)"
+           asp-route-gender="@(Model.FilterModel.Gender)"
+           asp-route-price="@(Model.FilterModel.Gender)"
+           asp-route-category="@(Model.FilterModel.SelectedCategory)">По новизне</a>
+
+        <a asp-action="Index"
+           asp-route-sortmodel="@(Model.SortModel.NameSort)"
+           asp-route-name="@(Model.FilterModel.Name)"
+           asp-route-gender="@(Model.FilterModel.Gender)"
+           asp-route-price="@(Model.FilterModel.Gender)"
+           asp-route-category="@(Model.FilterModel.SelectedCategory)">По имени</a>
+
+        <a asp-action="Index"
+           asp-route-sortmodel="@(Model.SortModel.PriceSort)"
+           asp-route-name="@(Model.FilterModel.Name)"
+           asp-route-gender="@(Model.FilterModel.Gender)"
+           asp-route-price="@(Model.FilterModel.Gender)"
+           asp-route-category="@(Model.FilterModel.SelectedCategory)">По цене</a>
+    </div>*@
+  
+
+
+        
+                @*<div class="mainbodywrap">
+                    @foreach (var item in Model.Products)
+                    {
+                        <div class="mainelement">
+                            <img src="@item.Photo" class="mainimage" />
+                            <div><h5>@item.ProductNname</h5></div>
+                            <div>@item.Price</div>
+                            <div>@item.IdCategoryNavigation.CategoryName</div>
+                            <div>
+                                <a asp-controller="Home" asp-action="Details" asp-route-id="@item.Id">Подробнее</a>
+                            </div>
+                        </div>
+                    }
+
+                </div>*@
+                @*@if (Model.PageModel.HasPreviousPage)
+                {
+                    <a asp-action="Index"
+                       asp-route-page="@(Model.PageModel.PageNumber - 1)"
+                       asp-route-name="@(Model.FilterModel.Name)"
+                       asp-route-gender="@(Model.FilterModel.Gender)"
+                       asp-route-price="@(Model.FilterModel.Price)"
+                       asp-route-category="@(Model.FilterModel.SelectedCategory)"
+                       asp-route-sortmodel="@(Model.SortModel.Current)"
+                       class="filtbut">
+
+                        Назад
+                    </a>
+                }
+                @if (Model.PageModel.HasNextPage)
+                {
+                    <a asp-action="Index"
+                       asp-route-page="@(Model.PageModel.PageNumber + 1)"
+                       asp-route-name="@(Model.FilterModel.Name)"
+                       asp-route-gender="@(Model.FilterModel.Gender)"
+                       asp-route-price="@(Model.FilterModel.Price)"
+                       asp-route-category="@(Model.FilterModel.SelectedCategory)"
+                       asp-route-sortmodel="@(Model.SortModel.Current)"
+                       class="filtbut">
+                        Вперед
+
+                    </a>
+                }*@
+            
+        @*<tr>
+            <td>Id</td>
+            <td>ProductName</td>
+            <td>Size</td>
+            <td>Price</td>
+            <td>CountAtStorage</td>
+            <td>CategoryName</td>
+        </tr>*@
+
+
+</body>

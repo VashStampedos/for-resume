@@ -1,0 +1,64 @@
+﻿@model IEnumerable<WebWithEntity.Entity.Baskets>
+@{
+    ViewData["Tittle"] = "Basket";
+    var sum = 0;
+    var count = 0;
+}
+<body>
+    <div class="basketsection1">
+        <div class="basketcontainer"> 
+            <div class="basketsection1wrap">
+                <div class="basketproductswrap">
+                    <h1 style="color:black">Корзина</h1>
+                    @foreach (var item in Model)
+                    {
+                        <div class="basketproduct">
+                            <div>
+                                <img src="@item.IdExampleNavigation.IdProductNavigation.Photo" class="basketproductphoto" />
+                                <div class="basketproductdescription">
+                                    <div class="basketproductinfos">Название: @item.IdExampleNavigation.IdProductNavigation.ProductNname</div>
+                                    <div class="basketproductinfos">Категория: @item.IdExampleNavigation.IdProductNavigation.IdCategoryNavigation.CategoryName</div>
+                                    <div class="basketproductinfos">Пол: @item.IdExampleNavigation.IdProductNavigation.Gender</div>
+                                    <div class="basketproductinfos">Размер: @item.IdExampleNavigation.Size</div>
+                                    <div class="basketproductinfos">Кол-во: <a asp-controller="Home" asp-action="MinusCountProductInBasket" asp-route-id="@item.Id" style="border:none; color:goldenrod " class="subm">-</a><label id="Counts">@item.Counts</label><a asp-controller="Home" asp-action="PlusCountProductInBasket" asp-route-id="@item.Id" style="border: none; color: goldenrod " class="subm">+</a></div>
+
+                                    <div class="basketproductinfos">Цена: @item.IdExampleNavigation.IdProductNavigation.Price BYN</div>
+                                </div>
+                            </div>
+                                <a asp-controller="Home" asp-action="RemoveFromBasket" asp-route-id="@item.Id" style="color:goldenrod"><i class="fas fa-times"></i></a>
+                           
+                        </div>
+                        count += item.Counts;
+                        sum += (item.IdExampleNavigation.IdProductNavigation.Price * item.Counts);
+                    }
+                </div>
+                <div class="basketorderwrap">
+                    <span style="font-size:25px"> В корзине @count продуктов</span>
+                    <span style="font-size:25px">  Итого: @sum BYN</span>
+                    <form asp-controller="Home" asp-action="Buy" method="post" class="orderformwrap">
+                        <div>
+                            <input type="text" required placeholder="Город" class="searches" name="city" />
+                            <input type="text" required placeholder="Улица" class="searches" name="street" />
+                            <input type="text" required placeholder="Дом" class="searches" name="house" />
+                            <input type="text" required placeholder="Квартира" class="searches" name="flat" />
+                        </div>
+                        <input type="submit" class="subm" value="Заказать!" />
+                    </form>
+
+                </div>
+
+            </div>
+                
+        </div>
+    </div>
+    @*<tr>
+            <td>Id</td>
+            <td>ProductName</td>
+            <td>Size</td>
+            <td>Price</td>
+            <td>CountAtStorage</td>
+            <td>CategoryName</td>
+        </tr>*@
+
+   
+</body>

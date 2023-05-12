@@ -1,0 +1,13 @@
+﻿@model WebWithEntity.Models.OfficeViewModel
+@{
+    <body>
+        <div class="basketsection1">
+            <div class="basketcontainer">
+                <div class="basketsection1wrap">
+                        @await Html.PartialAsync("MyOrders", Model.MyOrders);
+                </div>
+            </div>
+        </div>
+    </body>
+       
+}
